@@ -1,5 +1,5 @@
 import express from "express";
-import dbConnection from "./db.js";
+import dbConnection from "./utils/db.js";
 import dotenv from "dotenv";
 
 const app = express();

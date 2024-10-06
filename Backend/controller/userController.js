@@ -5,7 +5,7 @@ const Createuser = async (req, res) => {
   try {
     const { username, email, phone, isActive } = req.body;
 
-    const NewUser = new userModel({
+    const NewUser = new UserModel({
       username,
       email,
       phone,
@@ -26,7 +26,7 @@ const Createuser = async (req, res) => {
 // Get all users
 const GetUser = async (req, res) => {
   try {
-    const user = await userModel.find();
+    const user = await UserModel.find();
     if (!user) {
       return res.status(404).json({ Message: "No user found!" });
     }
@@ -64,4 +64,28 @@ const UpdateUser = async (req, res) => {
   }
 };
 
-export { Createuser, GetUser, UpdateUser };
+// Delete user by ID
+const DeleteUser = async (req, res) => {
+  try {
+    const UserID = req.params.id;
+    const deletedUser = await UserModel.findByIdAndDelete(UserID);
+
+    if (!deletedUser) {
+      return res
+        .status(404)
+        .json({ Message: "No user found with that ID!", success: false });
+    }
+    res.status(200).json({
+      Message: "User deleted successfully",
+      success: true,
+      deletedUser: deletedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(500)
+      .json({ Message: "Couldn't delete. Found error!", success: false });
+  }
+};
+
+export { Createuser, GetUser, UpdateUser, DeleteUser };

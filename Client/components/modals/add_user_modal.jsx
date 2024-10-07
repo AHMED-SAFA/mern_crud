@@ -1,7 +1,37 @@
+/* eslint-disable no-unused-vars */
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import axios from "axios";
+import { useState } from "react";
 
 function AddUserModal() {
+  const [value, setValues] = useState({
+    username: "",
+    email: "",
+    phone: "",
+    isActive: "",
+  });
+
+  const handleChange = (e) => {
+    setValues({ ...value, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const addUser = await axios.post(
+        "http://localhost:4000/api/create-user",
+        value
+      );
+      const response = addUser.data;
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(value);
+  };
+
   return (
     <div>
       <button
@@ -12,6 +42,7 @@ function AddUserModal() {
       >
         Add Application
       </button>
+
       <div
         className="modal fade"
         id="staticBackdrop"
@@ -34,12 +65,15 @@ function AddUserModal() {
               ></button>
             </div>
             <div className="modal-body">
-              <form action="">
+              <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                   <label htmlFor="name" className="form-label">
-                    Use Name
+                    Username
                   </label>
                   <input
+                    name="username"
+                    value={value.username}
+                    onChange={handleChange}
                     type="text"
                     className="form-control"
                     id="name"
@@ -51,6 +85,9 @@ function AddUserModal() {
                     Email
                   </label>
                   <input
+                    name="email"
+                    value={value.email}
+                    onChange={handleChange}
                     type="email"
                     className="form-control"
                     id="email"
@@ -62,6 +99,9 @@ function AddUserModal() {
                     Phone
                   </label>
                   <input
+                    name="phone"
+                    value={value.phone}
+                    onChange={handleChange}
                     type="tel"
                     className="form-control"
                     id="phone"
@@ -73,25 +113,28 @@ function AddUserModal() {
                     Active status
                   </label>
                   <input
+                    name="isActive"
+                    value={value.isActive}
+                    onChange={handleChange}
                     type="text"
                     className="form-control"
                     id="active-text"
                     required
                   />
                 </div>
+                <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="submit" className="btn btn-primary">
+                    Add
+                  </button>
+                </div>
               </form>
-            </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" className="btn btn-primary">
-                Add
-              </button>
             </div>
           </div>
         </div>

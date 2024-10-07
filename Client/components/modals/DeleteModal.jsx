@@ -1,30 +1,20 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-
-function Modal() {
+function DeleteModal() {
   return (
     <div>
-      <button
-        type="button"
-        className="btn btn-primary mt-4"
-        data-bs-toggle="modal"
-        data-bs-target="#staticBackdrop"
-      >
-        Add Application
-      </button>
       <div
         className="modal fade"
-        id="staticBackdrop"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
-        aria-labelledby="staticBackdropLabel"
+        id="deleteModal"
+        tabIndex="-1"
+        aria-labelledby="deleteModalLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title" id="staticBackdropLabel">
-                Add
+              <h5 className="modal-title" id="deleteModalLabel">
+                Delete User
               </h5>
               <button
                 type="button"
@@ -33,7 +23,11 @@ function Modal() {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body">Modal content goes here...</div>
+            <div className="modal-body">
+              <h3 className="text-danger text-center">
+                Do you want to delete the user?
+              </h3>
+            </div>
             <div className="modal-footer">
               <button
                 type="button"
@@ -42,8 +36,8 @@ function Modal() {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary">
-                Add
+              <button type="button" className="btn btn-danger">
+                Delete
               </button>
             </div>
           </div>
@@ -53,4 +47,4 @@ function Modal() {
   );
 }
 
-export default Modal;
+export default DeleteModal;

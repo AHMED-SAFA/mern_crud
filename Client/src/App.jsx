@@ -2,8 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./App.css";
 import Header from "../components/header/header.jsx";
-import Modal from "../components/modals/modal.jsx";
 import Table from "../components/tables/Table.jsx";
+import AddUserModal from "../components/modals/add_user_modal.jsx";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
       <Header />
 
       {/* Modal Section */}
-      <Modal />
+      <AddUserModal />
 
       {/* Table Section */}
       <Table />

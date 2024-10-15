@@ -2,8 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./App.css";
 import Header from "../components/header/header.jsx";
-import Table from "../components/tables/Table.jsx";
-import AddUserModal from "../components/modals/add_user_modal.jsx";
+import MainTable from "../components/main_components/main_table.jsx";
 
 function App() {
   return (
@@ -11,11 +10,8 @@ function App() {
       {/* Header Section */}
       <Header />
 
-      {/* Modal Section */}
-      <AddUserModal />
-
       {/* Table Section */}
-      <Table />
+      <MainTable />
     </div>
   );
 }

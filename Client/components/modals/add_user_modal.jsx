@@ -6,6 +6,7 @@ import { Toaster, toast } from "react-hot-toast";
 import { useState } from "react";
 
 function AddUserModal() {
+  
   const [value, setValues] = useState({
     username: "",
     email: "",
@@ -48,7 +49,7 @@ function AddUserModal() {
 
   return (
     <div>
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster position="top-center" reverseOrder={false} />
       <button
         type="button"
         className="btn btn-primary mt-4"

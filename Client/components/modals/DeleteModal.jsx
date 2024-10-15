@@ -1,6 +1,33 @@
+/* eslint-disable no-unused-vars */
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
-function DeleteModal() {
+import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
+
+
+
+// eslint-disable-next-line react/prop-types
+function DeleteModal({ userId }) {
+  // Delete user function
+  const deleteUser = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:4000/api/delete-user/${userId}`
+      );
+      if (response) {
+        toast.success("User deleted successfully!");
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      } else {
+        toast.error("Failed to delete user!");
+      }
+    } catch (error) {
+      toast.error("Error deleting user!");
+      console.error("Error deleting user:", error);
+    }
+  };
+
   return (
     <div>
       <div
@@ -25,7 +52,7 @@ function DeleteModal() {
             </div>
             <div className="modal-body">
               <h3 className="text-danger text-center">
-                Do you want to delete the user?
+                Do you want to delete this user?
               </h3>
             </div>
             <div className="modal-footer">
@@ -36,7 +63,12 @@ function DeleteModal() {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-danger">
+              <button
+                type="button"
+                className="btn btn-danger"
+                data-bs-dismiss="modal"
+                onClick={deleteUser}
+              >
                 Delete
               </button>
             </div>

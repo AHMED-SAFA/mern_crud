@@ -25,40 +25,24 @@ function UpdateUserModel() {
               ></button>
             </div>
             <div className="modal-body">
-              {/* Edit Form */}
               <form>
                 <div className="mb-3">
                   <label htmlFor="username" className="form-label">
                     Username
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="username"
-                    // defaultValue={selectedUser.username}
-                  />
+                  <input type="text" className="form-control" id="username" />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">
                     Email
                   </label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    id="email"
-                    // defaultValue={selectedUser.email}
-                  />
+                  <input type="email" className="form-control" id="email" />
                 </div>
                 <div className="mb-3">
                   <label htmlFor="phone" className="form-label">
                     Phone
                   </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="phone"
-                    // defaultValue={selectedUser.phone}
-                  />
+                  <input type="text" className="form-control" id="phone" />
                 </div>
               </form>
             </div>

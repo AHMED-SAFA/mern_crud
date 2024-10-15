@@ -2,6 +2,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 import { useState } from "react";
 
 function AddUserModal() {
@@ -18,13 +19,26 @@ function AddUserModal() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const addUser = await axios.post(
         "http://localhost:4000/api/create-user",
         value
       );
       const response = addUser.data;
+      if (response.success) {
+        toast.success("User added successfully!");
+        setValues({
+          username: "",
+          email: "",
+          phone: "",
+          isActive: "",
+        });
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+      } else {
+        toast.error("Failed to add user!");
+      }
       console.log(response);
     } catch (error) {
       console.log(error);
@@ -34,6 +48,7 @@ function AddUserModal() {
 
   return (
     <div>
+      <Toaster position="top-right" reverseOrder={false} />
       <button
         type="button"
         className="btn btn-primary mt-4"
@@ -130,7 +145,11 @@ function AddUserModal() {
                   >
                     Close
                   </button>
-                  <button type="submit" className="btn btn-primary">
+                  <button
+                    type="submit"
+                    className="btn btn-primary"
+                    data-bs-dismiss="modal"
+                  >
                     Add
                   </button>
                 </div>
